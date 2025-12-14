@@ -387,12 +387,21 @@
     video.currentTime = 0;
   }
 
-  function setFeatured(src, poster) {
-    const featured = document.getElementById('featuredVideo');
-    featured.src = src;
-    if (poster) featured.poster = poster;
-    featured.play();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  function setFeatured(videoSrc, posterSrc = null) {
+  const featured = document.querySelector('.featured video');
+  if (!featured) return;
+
+  featured.src = videoSrc;
+  if (posterSrc) featured.poster = posterSrc;
+  featured.load();
+  featured.play();
+
+  // ❗ Only scroll on non-touch (desktop) devices
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  if (!isTouchDevice) {
+    document.querySelector('.featured')?.scrollIntoView({ behavior: 'smooth' });
+  }
+});
   }
 </script>
 
