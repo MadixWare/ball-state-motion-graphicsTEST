@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ball State Football Motion Graphics</title>
+  <style>
+    :root {
+      --red: #BA0C2F; /* Ball State Red */
+      --black: #0B0B0B;
+      --white: #FFFFFF;
+      --gray: #1A1A1A;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background-color: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      background-image: repeating-linear-gradient(
+        45deg,
+        rgba(186,12,47,0.05),
+        rgba(186,12,47,0.05) 10px,
+        transparent 10px,
+        transparent 20px
+      );
+    }
+
+    /* HERO */
+    .hero {
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.75)), url('ball-state-hero.jpg') center/cover no-repeat;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: var(--red);
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+    }
+
+    .hero span {
+      color: var(--red);
+    }
+
+    .hero p {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 5rem 8%;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+      margin-bottom: 2rem;
+      border-left: 6px solid var(--red);
+      padding-left: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    h3 {
+      margin: 3rem 0 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--red);
+    }
+
+    /* BADGES */
+    .badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--red);
+      color: #fff;
+      padding: .35rem .75rem;
+      font-size: .75rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      border-radius: 6px;
+      z-index: 2;
+    }
+
+    /* FEATURED VIDEO */
+    .featured video {
+      width: 1920px;
+      max-width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 16px;
+      background: #000;
+      display: block;
+      margin: 0 auto;
+      border: 2px solid var(--red);
+      box-shadow: 0 20px 40px rgba(0,0,0,.6);
+    }
+
+    /* GALLERY */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--gray);
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      transition: transform .3s ease, box-shadow .3s ease;
+      border: 1px solid rgba(186,12,47,.35);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 30px rgba(0,0,0,.6);
+    }
+
+    .card video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      background: #000;
+    }
+
+    .card-content {
+      padding: 1.2rem;
+      border-top: 3px solid var(--red);
+    }
+
+    .card-content p {
+      font-size: .9rem;
+      opacity: .85;
+    }
+
+    /* PROCESS */
+    .process {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+    }
+
+    .process div {
+      background: var(--gray);
+      padding: 2.5rem;
+      border-radius: 18px;
+      border-left: 6px solid var(--red);
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 3rem 8%;
+      background: #000;
+      text-align: center;
+      border-top: 6px solid var(--red);
+    }
+
+    footer a {
+      color: var(--red);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <h1>Ball State Football<br>Motion Graphics</h1>
+      <p>Game-day visuals • Hype content • Broadcast-ready motion</p>
+    </div>
+  </div>
+
+  <!-- FEATURED REEL -->
+  <section class="featured">
+    <h2>Featured Reel</h2>
+    <video id="featuredVideo" src="WinAnimation.mp4" poster="win-poster.jpg" controls muted></video>
+  </section>
+
+  <!-- GALLERY -->
+  <section>
+    <h2>Motion Graphics Gallery</h2>
+
+    <!-- WIN -->
+    <h3>Win</h3>
+    <div class="grid">
+      <div class="card" data-category="win jumbotron"
+        onclick="event.stopPropagation(); setFeatured('WinAnimation.mp4')"
+        ondblclick="openLightbox('WinAnimation.mp4')"
+        onmouseenter="hoverPlay(this)" onmouseleave="hoverPause(this)">
+        <span class="badge">WIN</span>
+        <video src="WinAnimation.mp4" muted loop></video>
+        <div class="card-content">
+          <p>Postgame win animation designed for 1920×1080 in-stadium displays.</p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- TOUCHDOWN -->
+    <h3>Touchdown</h3>
+    <div class="grid">
+      <div class="card" data-category="touchdown jumbotron"
+        onclick="event.stopPropagation(); setFeatured('TouchdownAnimation1.mp4')"
+        ondblclick="openLightbox('TouchdownAnimation1.mp4')"
+        onmouseenter="hoverPlay(this)" onmouseleave="hoverPause(this)">
+        <span class="badge">TOUCHDOWN</span>
+        <video src="TouchdownAnimation1.mp4" muted loop></video>
+        <div class="card-content">
+          <p>Primary touchdown celebration animation built for in-stadium use.</p>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- BIG PLAY -->
+    <h3>Big Play</h3>
+    <div class="grid">
+      <div class="card" data-category="bigplay jumbotron"
+        onclick="event.stopPropagation(); setFeatured('big-play.mp4')"
+        ondblclick="openLightbox('big-play.mp4')"
+        onmouseenter="hoverPlay(this)" onmouseleave="hoverPause(this)">
+        <span class="badge">BIG PLAY</span>
+        <video src="big-play.mp4" muted loop></video>
+        <div class="card-content"><p>Momentum-shifting big play graphic.</p></div>
+      </div>
+    </div>
+
+    <!-- TURNOVER -->
+    <h3>Turnover</h3>
+    <div class="grid">
+      <div class="card" data-category="turnover jumbotron"
+        onclick="event.stopPropagation(); setFeatured('turnover.mp4')"
+        ondblclick="openLightbox('turnover.mp4')"
+        onmouseenter="hoverPlay(this)" onmouseleave="hoverPause(this)">
+        <span class="badge">TURNOVER</span>
+        <video src="turnover.mp4" muted loop></video>
+        <div class="card-content"><p>Defensive turnover animation.</p></div>
+      </div>
+    </div>
+
+    <!-- SACK -->
+    <h3>Sack</h3>
+    <div class="grid">
+      <div class="card" data-category="sack jumbotron"
+        onclick="event.stopPropagation(); setFeatured('sack.mp4')"
+        ondblclick="openLightbox('sack.mp4')"
+        onmouseenter="hoverPlay(this)" onmouseleave="hoverPause(this)">
+        <span class="badge">SACK</span>
+        <video src="sack.mp4" muted loop></video>
+        <div class="card-content"><p>Quarterback sack celebration.</p></div>
+      </div>
+    </div>
+
+    <!-- PICK SIX -->
+    <h3>Pick Six</h3>
+    <div class="grid">
+      <div class="card" data-category="picksix jumbotron"
+        onclick="event.stopPropagation(); setFeatured('pick-six.mp4')"
+        ondblclick="openLightbox('pick-six.mp4')"
+        onmouseenter="hoverPlay(this)" onmouseleave="hoverPause(this)">
+        <span class="badge">PICK SIX</span>
+        <video src="pick-six.mp4" muted loop></video>
+        <div class="card-content"><p>Interception returned for a touchdown.</p></div>
+      </div>
+    </div>
+
+    <!-- THIRD DOWN -->
+    <h3>Third Down</h3>
+    <div class="grid">
+      <div class="card" data-category="thirddown jumbotron"
+        onclick="event.stopPropagation(); setFeatured('third-down.mp4')"
+        ondblclick="openLightbox('third-down.mp4')"
+        onmouseenter="hoverPlay(this)" onmouseleave="hoverPause(this)">
+        <span class="badge">THIRD DOWN</span>
+        <video src="third-down.mp4" muted loop></video>
+        <div class="card-content"><p>Defensive third-down hype graphic.</p></div>
+      </div>
+    </div>
+
+    <!-- GET LOUD -->
+    <h3>Get Loud</h3>
+    <div class="grid">
+      <div class="card" data-category="getloud jumbotron"
+        onclick="event.stopPropagation(); setFeatured('get-loud.mp4')"
+        ondblclick="openLightbox('get-loud.mp4')"
+        onmouseenter="hoverPlay(this)" onmouseleave="hoverPause(this)">
+        <span class="badge">GET LOUD</span>
+        <video src="get-loud.mp4" muted loop></video>
+        <div class="card-content"><p>Crowd engagement animation.</p></div>
+      </div>
+    </div>
+
+    <!-- CHALLENGE -->
+    <h3>Challenge</h3>
+    <div class="grid">
+      <div class="card" data-category="challenge jumbotron"
+        onclick="event.stopPropagation(); setFeatured('challenge.mp4')"
+        ondblclick="openLightbox('challenge.mp4')"
+        onmouseenter="hoverPlay(this)" onmouseleave="hoverPause(this)">
+        <span class="badge">CHALLENGE</span>
+        <video src="challenge.mp4" muted loop></video>
+        <div class="card-content"><p>Coach challenge animation.</p></div>
+      </div>
+    </div>
+
+    <!-- TIMEOUT -->
+    <h3>Timeout</h3>
+    <div class="grid">
+      <div class="card" data-category="timeout jumbotron"
+        onclick="event.stopPropagation(); setFeatured('timeout.mp4')"
+        ondblclick="openLightbox('timeout.mp4')"
+        onmouseenter="hoverPlay(this)" onmouseleave="hoverPause(this)">
+        <span class="badge">TIMEOUT</span>
+        <video src="timeout.mp4" muted loop></video>
+        <div class="card-content"><p>Timeout break animation.</p></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- PROCESS -->
+  <section>
+    <h2>Creative Process</h2>
+    <div class="process">
+      <div>
+        <h3>Concept</h3>
+        <p>Each piece begins with the Ball State brand and the emotion of game day.</p>
+      </div>
+      <div>
+        <h3>Design</h3>
+        <p>Typography, color, and composition designed for maximum impact.</p>
+      </div>
+      <div>
+        <h3>Animation</h3>
+        <p>Fast-paced motion built in After Effects and optimized for display.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Motion Graphics by Madix Ware</p>
+    <p><a href="mailto:youremail@example.com">Contact Me</a></p>
+  </footer>
+
+<script>
+  function hoverPlay(card) {
+    const video = card.querySelector('video');
+    video.play();
+  }
+
+  function hoverPause(card) {
+    const video = card.querySelector('video');
+    video.pause();
+    video.currentTime = 0;
+  }
+
+  function setFeatured(videoSrc, posterSrc = null) {
+  const featured = document.querySelector('.featured video');
+  if (!featured) return;
+
+  featured.src = videoSrc;
+  if (posterSrc) featured.poster = posterSrc;
+  featured.load();
+  featured.play();
+
+  // ❗ Only scroll on non-touch (desktop) devices
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  if (!isTouchDevice) {
+    document.querySelector('.featured')?.scrollIntoView({ behavior: 'smooth' });
+  }
+});
+  }
+</script>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <video id="lightboxVideo" controls autoplay></video>
+  </div>
+
+<script>
+  function hoverPlay(card) { const v = card.querySelector('video'); v.play(); }
+  function hoverPause(card) { const v = card.querySelector('video'); v.pause(); v.currentTime = 0; }
+
+  function setFeatured(src, poster) {
+    const f = document.getElementById('featuredVideo');
+    f.src = src; if (poster) f.poster = poster; f.play();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function openLightbox(src) {
+    const lb = document.getElementById('lightbox');
+    const v = document.getElementById('lightboxVideo');
+    v.src = src; lb.style.display = 'flex';
+  }
+
+  function closeLightbox() {
+    const lb = document.getElementById('lightbox');
+    const v = document.getElementById('lightboxVideo');
+    v.pause(); v.src = ''; lb.style.display = 'none';
+  }
+
+  function filterCards(category, btn) {
+    document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.card').forEach(card => {
+      if (category === 'all' || card.dataset.category?.includes(category)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
